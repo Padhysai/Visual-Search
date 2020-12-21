@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column bg-dark text-white">
+        <header class="mb-auto">
+            <div>
+                <h3 class="float-md-start mb-0">Image Classification - PyTorch</h3>
+                <nav class="nav nav-masthead justify-content-center float-md-end">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link" href="/about">About</a>
+                    <a class="nav-link" href="/contact">Contact</a>
+                </nav>
+            </div>
+        </header>
+        <main>
+
+            {% block main %}
+
+            {% endblock %}
+
+        </main>
+        <footer class="mt-auto text-white-50">
+            <p>Sai Prasad</p>
+        </footer>
+    </div>
+
+    <!-- Import jquery 3.3.1 slim min -->
+    <script src="{{ url_for('static', filename='js/jquery.slim.min.js') }}"></script>
+    <!-- Import Bootstrap bundle -->
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/script.js') }}"></script>
+</body>
+
+</html>
