@@ -75,7 +75,7 @@ class VisualSearch():
         self.kNN = NearestNeighbors(n_neighbors=np.min([50, X.shape[0]]), algorithm=algorithm, metric=metric).fit(X)
 
     # main method - identify most similar items
-    def run(self, path_image, model='VGG', k=5, load_model=True, load_features=True,
+    def run(self, path_image, model='Inception_Resnet', k=5, load_model=True, load_features=True,
             fit_model=True, algorithm='brute', metric='cosine',
             nb_imgs=100, remove_not_white=False):
 
@@ -97,8 +97,6 @@ class VisualSearch():
         if model == 'Inception_Resnet':
             img = image.load_img(path_image, target_size=(299, 299))
             img = image.img_to_array(img)  # convert to array
-            #            if remove_background:
-            #                img = utils.remove_background(img.astype(np.uint8))
             img = np.expand_dims(img, axis=0)
             img = ppIR(img)
             self.img_features = [self.IR_model.predict(img).flatten()]
@@ -122,10 +120,6 @@ class VisualSearch():
 
 if __name__ == '__main__':
     image_path = parentdir + '/data/dataset/test_dog.jpg'
-    #    image_path = parentdir + '/data/dataset/test/usedgoaliestick_example.jpg'
-    #    image_path = parentdir + '/data/dataset/test/hockeystick_example.jpeg'
-    #    image_path = parentdir + '/data/dataset/test/hockeystick_example_2.jpg'
-    #    image_path = parentdir + '/data/dataset/test/hockeyskatesexample.jpeg'
 
     search = VisualSearch(dataset='my_dataset')
     search.run(image_path, model='Inception_Resnet',remove_not_white=False)
