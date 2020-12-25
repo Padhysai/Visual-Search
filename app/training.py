@@ -117,7 +117,7 @@ class Training():
                         white_background = 0
 
                     cur.execute('INSERT INTO features_' + str(
-                        self.dataset) + ' (img_id, item_id, features_Inception_Resnet, transformation, white_background, active) VALUES (?,?,?,?,?,?,?)',
+                        self.dataset) + ' (img_id, item_id, features_Inception_Resnet, transformation, white_background, active) VALUES (?,?,?,?,?,?)',
                                 (img_ids[j], i.split('_')[0].split('.')[0], features_IR, transformations[j],
                                  white_background, 1))
 

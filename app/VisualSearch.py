@@ -121,7 +121,7 @@ class VisualSearch():
 if __name__ == '__main__':
     image_path = parentdir + '/data/dataset/test_dog.jpg'
 
-    search = VisualSearch(dataset='my_dataset')
+    search = VisualSearch(dataset='example_dataset')
     search.run(image_path, model='Inception_Resnet',remove_not_white=False)
     search.similar_items_path()
 
