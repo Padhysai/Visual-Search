@@ -1,0 +1,14 @@
+{% extends "public/templates/base_template.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+
+<strong class="d-block mb-3">Similar Items</strong>
+<ul>
+  {% for item in items %}
+  <li><img src="{{ item }}" width="500" height="600"></li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
