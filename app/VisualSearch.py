@@ -7,6 +7,7 @@ from tensorflow.python.keras.applications.inception_resnet_v2 import preprocess_
 from tensorflow.python.keras.models import Model
 from tensorflow.python.keras.preprocessing import image
 from tensorflow.python.keras.layers import GlobalAveragePooling2D
+from app import app
 
 import os, sys, inspect
 
@@ -40,8 +41,8 @@ class VisualSearch():
         self.model = None
 
     # method to load VGG19 and Inception_Resnet models
-    def _load_model(self, model='Inception_Resnet'):
-        if model == 'Inception_Resnet':
+    def _load_model(self, model=app.config["MODEL_NAME"]):
+        if model == app.config["MODEL_NAME"]:
             # load Inception_Resnet model
             print("Loading Inception_Resnet_V2 pre-trained model...")
             base_model = InceptionResNetV2(weights='imagenet', include_top=False)
@@ -50,7 +51,7 @@ class VisualSearch():
             self.IR_model = Model(inputs=base_model.input, outputs=x)
 
     # method to load features of each item
-    def _load_features(self, model='Inception_Resnet', remove_not_white=False):
+    def _load_features(self, model=app.config["MODEL_NAME"], remove_not_white=False):
         # connect to the database
         conn = sqlite3.connect(parentdir + '\\data\\database\\features.db', detect_types=sqlite3.PARSE_DECLTYPES)
         cur = conn.cursor()
@@ -72,10 +73,10 @@ class VisualSearch():
     def _fit_kNN(self, algorithm='brute', metric='cosine'):
         # fit kNN model
         X = np.array(self.features)
-        self.kNN = NearestNeighbors(n_neighbors=np.min([50, X.shape[0]]), algorithm=algorithm, metric=metric).fit(X)
+        self.kNN = NearestNeighbors(n_neighbors=app.config["NO_OF_SIMILAR_IMAGES"], algorithm=algorithm, metric=metric).fit(X)
 
     # main method - identify most similar items
-    def run(self, path_image, model='Inception_Resnet', k=5, load_model=True, load_features=True,
+    def run(self, path_image, model=app.config["MODEL_NAME"], k=5, load_model=True, load_features=True,
             fit_model=True, algorithm='brute', metric='cosine',
             nb_imgs=100, remove_not_white=False):
 
@@ -94,7 +95,7 @@ class VisualSearch():
             self._fit_kNN(algorithm=algorithm, metric=metric)
 
         # calculate the features of the images
-        if model == 'Inception_Resnet':
+        if model == app.config["MODEL_NAME"]:
             img = image.load_img(path_image, target_size=(299, 299))
             img = image.img_to_array(img)  # convert to array
             img = np.expand_dims(img, axis=0)
@@ -113,16 +114,17 @@ class VisualSearch():
         path_to_similar_items = []
         for i in range(len(self.similar_images)):
             if self.similar_items[i] not in self.similar_items[:i]:  # remove duplicate items
-                path = [parentdir + '/data/dataset/' + str(self.dataset) + '/' + self.similar_images[i]]
-                path_to_similar_items = path_to_similar_items + path
+                #img_path = '/data/dataset/' + str(self.dataset) + '/' + self.similar_images[i]
+                path = os.path.join(app.config["DATASET_IMAGES_PATH"], self.similar_images[i])
+                path_to_similar_items.append(path)
         return path_to_similar_items
 
 
 if __name__ == '__main__':
     image_path = parentdir + '/data/dataset/test_dog.jpg'
 
-    search = VisualSearch(dataset='example_dataset')
-    search.run(image_path, model='Inception_Resnet',remove_not_white=False)
+    search = VisualSearch(dataset=app.config["DATASET"])
+    search.run(image_path, model=app.config["MODEL_NAME"],remove_not_white=False)
     search.similar_items_path()
 
 

@@ -106,9 +106,7 @@ class Training():
                 # otherwise, we calculate it
                 else:
                     # Inception_Resnet model
-                    features_IR = calculate_features(model=IR_model, preprocessor=ppIR,
-                                                     img=img_IR,
-                                                     )
+                    features_IR = calculate_features(model=IR_model, preprocessor=ppIR, img=img_IR)
 
                     # Verify color of the background (if white or not)
                     if np.array(img_IR)[0][0][0] == 255:
@@ -140,5 +138,5 @@ class Training():
 
 
 if __name__ == '__main__':
-    train = Training(dataset='example_dataset')
+    train = Training(dataset=app.config["DATASET"])
     train.fit()

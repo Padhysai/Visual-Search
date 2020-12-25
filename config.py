@@ -1,12 +1,13 @@
 import os
 
-
-basepath = os.path.dirname(__file__)
-file_path = os.path.join(basepath, 'data/input_image', 'input.jpg')
-
 class Config(object):
     DEBUG = False
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    IMAGE_UPLOAD_LOCATION = file_path
+    BASEPATH = os.path.dirname(__file__)
+    IMAGE_UPLOAD_LOCATION = os.path.join(BASEPATH, 'data/input_image', 'input.jpg')
+    MODEL_NAME = 'Inception_Resnet'
+    NO_OF_SIMILAR_IMAGES = 3
+    DATASET = 'example_dataset'
+    DATASET_IMAGES_PATH = os.path.join(BASEPATH, 'data/dataset', DATASET)
