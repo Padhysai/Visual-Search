@@ -133,9 +133,6 @@ class Training():
 
     # main method to extract features
     def fit(self):
-        """
-        models currently supported: Inception_Resnet (V2)
-        """
 
         # calculate the features
         self._calculate_features()
