@@ -19,7 +19,7 @@ def contact():
 
 @app.route('/upload/<filename>')
 def send_image(filename):
-    return send_from_directory("my_dataset", filename)
+    return send_from_directory(app.config["DATASET_IMAGES_PATH"], filename)
 
 @app.route("/recommend", methods=["GET", "POST"])
 def recommend():
