@@ -10,37 +10,90 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
     <title>{% block title %}{% endblock %}</title>
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-first">
+        <a class="navbar-brand font-weight-bold font-italic" style="color:#F53163" href="/">Visual Search</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" style="color:#F53163" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="color:#F53163" href="/about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " style="color:#F53163" href="/contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column bg-dark text-white">
-        <header class="mb-auto">
-            <div>
-                <h3 class="float-md-start mb-0">Image Classification - PyTorch</h3>
-                <nav class="nav nav-masthead justify-content-center float-md-end">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
-                    <a class="nav-link" href="/about">About</a>
-                    <a class="nav-link" href="/contact">Contact</a>
-                </nav>
+      <main>
+
+        {% block main %}
+
+        {% endblock %}
+
+    </main>
+
+      <!-- Footer Section-->
+      <div class="container-fluid pb-0 mb-0 justify-content-center text-light" style="background-color: #E4C2C1 !important;">
+        <footer>
+            <div class="row my-5 justify-content-center py-5">
+                <div class="col-11">
+                    <div class="row ">
+                        <div class="col-xl-8 col-md-4 col-sm-4 col-12 my-auto mx-auto a">
+                            <h3 class="text-muted mb-md-0 mb-5 bold-text">Sai Prasad.</h3>
+                        </div>
+                        <div class="col-xl-2 col-md-4 col-sm-4 col-12">
+                            <h6 class="mb-3 mb-lg-4 bold-text "><b>MENU</b></h6>
+                            <ul class="list-unstyled">
+                                <li><a href="/" style="color: #FEF2F2;">Home</a></li>
+                                <li><a href="/about" style="color: #FEF2F2;">About</a></li>
+                                <li><a href="https://saiprasadpadhy.com/blog" style="color: #FEF2F2;" target="_blank">Blog</a></li>
+                                <li><a href="https://saiprasadpadhy.com" style="color: #FEF2F2;" target="_blank">Portfolio</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-xl-2 col-md-4 col-sm-4 col-12">
+                            <h6 class="mb-3 mb-lg-4 text-muted bold-text mt-sm-0 mt-5"><b>ADDRESS</b></h6>
+                            <p class="mb-1">SRIKAKULAM, ANDHRA PRADESH</p>
+                            <p>INDIA</p>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-xl-8 col-md-4 col-sm-4 col-auto my-md-0 mt-5 order-sm-1 order-3 align-self-end">
+                            <div>
+                                <a href="https://twitter.com/Saipras28522258" style="color: #F53163;"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.facebook.com/saiprasad.rocky.5" style="color: #F53163;"><i class="fab fa-facebook-f ml-2"></i></a>
+                                <a href="https://www.linkedin.com/in/saiprasadpadhy" style="color: #F53163;"><i class="fab fa-linkedin ml-2"></i></a>
+                                <a href="https://github.com/padhysai" style="color: #F53163;"><i class="fab fa-github ml-2"></i></a>
+                                <a href="https://www.instagram.com/sai_prasad006" style="color: #F53163;"><i class="fab fa-instagram ml-2"></i></a>
+                            </div>
+                            <p class="social text-muted mb-0 pb-0 bold-text"> </p><small class="rights"><span>&#174;</span> Sai Prasad, All Rights Reserved.</small>
+                        </div>
+                        <div class="col-xl-2 col-md-4 col-sm-4 col-auto order-1 align-self-end ">
+                            <h6 class="mt-55 mt-2 text-muted bold-text"><b>SAI PRASAD PADHY</b></h6><small> saiprasadpadhy@gmail.com</small>
+                        </div>
+                        
+                    </div>
+                </div>
             </div>
-        </header>
-        <main>
-
-            {% block main %}
-
-            {% endblock %}
-
-        </main>
-        <footer class="mt-auto text-white-50">
-            <p>Sai Prasad</p>
         </footer>
     </div>
-
+      <!-- Footer Section end-->
     <!-- Import jquery 3.3.1 slim min -->
     <script src="{{ url_for('static', filename='js/jquery.slim.min.js') }}"></script>
+    
     <!-- Import Bootstrap bundle -->
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url_for('static',filename='js/script.js') }}"></script>
