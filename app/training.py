@@ -1,11 +1,10 @@
 import io
 import numpy as np
 import sqlite3
-from tensorflow.python.keras.applications.inception_resnet_v2 import InceptionResNetV2
-from tensorflow.python.keras.applications.inception_resnet_v2 import preprocess_input as ppIR
-from tensorflow.python.keras.models import Model
+import tensorflow as tf
+from tensorflow.python.keras.applications.vgg19 import preprocess_input as PP
 from tensorflow.python.keras.preprocessing import image
-from tensorflow.python.keras.layers import GlobalAveragePooling2D
+
 
 import os, sys, inspect
 
@@ -38,8 +37,6 @@ class Training():
     def __init__(self, dataset):
         self.dataset = dataset
         self.features = []
-        self.similar_images = {}
-        self.similar_items = {}
 
     # method to calculate the features of every image and indicate in the database if the image is "active"
     def _calculate_features(self):
@@ -59,19 +56,16 @@ class Training():
 
         transformations = ['000']
 
-        # load Inception_Resnet model
-        print("Loading Inception_Resnet_V2 pre-trained model...")
-        base_model = InceptionResNetV2(weights='imagenet', include_top=False)
-        x = base_model.output
-        x = GlobalAveragePooling2D()(x)
-        IR_model = Model(inputs=base_model.input, outputs=x)
+        # load VGG model
+        print("Loading VGG pre-trained model...")
+        VGG_model = tf.keras.models.load_model('C:/Users/91955/Desktop/current/Visual-Search/data/models/model.h5')
 
         # connect to the database, and create the features table if it does not exists
         os.makedirs(parentdir + '\\data\\database', exist_ok=True)
         conn = sqlite3.connect(parentdir + '\\data\\database\\features.db', detect_types=sqlite3.PARSE_DECLTYPES)
         cur = conn.cursor()
         cur.execute('CREATE TABLE IF NOT EXISTS features_' + str(
-            self.dataset) + ' (img_id TEXT PRIMARY KEY, item_id TEXT, features_Inception_Resnet array, transformation CHARACTER(20), white_background INTEGER, active INTEGER)')
+            self.dataset) + ' (img_id TEXT PRIMARY KEY, item_id TEXT, features_VGG array, transformation CHARACTER(20), white_background INTEGER, active INTEGER)')
 
         # create a item ID: list of associated image IDs dictionary, useful to identify most similar items after computation
         folder = parentdir + '\\data\\dataset\\' + self.dataset
@@ -94,8 +88,7 @@ class Training():
             data = cur.fetchall()
 
             path = folder + '\\' + i
-            # img_VGG = image.load_img(path, target_size=(224, 224))
-            img_IR = image.load_img(path, target_size=(299, 299))
+            img_VGG = image.load_img(path, target_size=(224, 224))
 
             for j in range(len(transformations)):
                 # if already calculated, we activate it
@@ -105,18 +98,18 @@ class Training():
 
                 # otherwise, we calculate it
                 else:
-                    # Inception_Resnet model
-                    features_IR = calculate_features(model=IR_model, preprocessor=ppIR, img=img_IR)
+                    # VGG model
+                    features_VGG = calculate_features(model=VGG_model, preprocessor=PP, img=img_VGG)
 
                     # Verify color of the background (if white or not)
-                    if np.array(img_IR)[0][0][0] == 255:
+                    if np.array(img_VGG)[0][0][0] == 255:
                         white_background = 1
                     else:
                         white_background = 0
 
                     cur.execute('INSERT INTO features_' + str(
-                        self.dataset) + ' (img_id, item_id, features_Inception_Resnet, transformation, white_background, active) VALUES (?,?,?,?,?,?)',
-                                (img_ids[j], i.split('_')[0].split('.')[0], features_IR, transformations[j],
+                        self.dataset) + ' (img_id, item_id, features_VGG, transformation, white_background, active) VALUES (?,?,?,?,?,?)',
+                                (img_ids[j], i.split('_')[0].split('.')[0], features_VGG, transformations[j],
                                  white_background, 1))
 
             ki += 1
@@ -138,5 +131,5 @@ class Training():
 
 
 if __name__ == '__main__':
-    train = Training(dataset=app.config["DATASET"])
+    train = Training(dataset='my_dataset')
     train.fit()
