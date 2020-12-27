@@ -91,6 +91,7 @@ class VisualSearch():
             img = np.expand_dims(img, axis=0)
             img = PP(img)
             self.img_features = [self.VGG_model.predict(img).flatten()]
+            tf.keras.backend.clear_session()
 
             # find most similar images in the dataset
         _, self.NN = self.kNN.kneighbors(self.img_features)
