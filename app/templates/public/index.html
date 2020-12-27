@@ -4,29 +4,30 @@
 
 {% block main %}
 
-<div class="container">
-  <div class="row">
-    <div class="col">
+<section>
+  <div class="container p-5 float-right mt-5 mb-5">
+    <div class="row">
+      <div class="col-lg-5 ml-auto" style="margin-right: 150px;">
+        <div class="p-5 bg-white shadow rounded-lg"><img src="{{ url_for('static',filename='images/image-upload.png') }}" alt="" width="200" class="d-block mx-auto mb-4 rounded-pill">
 
-      <h1>Upload an image</h1>
-      <hr>
+          <!-- Default bootstrap file upload-->
 
-      <form action="/recommend" method="POST" enctype="multipart/form-data">
-
-        <div class="form-group">
-          <label>Select image</label>
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" name="image" id="image">
-            <label class="custom-file-label" for="image">Select image...</label>
+          <h6 class="text-center mb-4 text-muted">
+            Select an Image to get similar items..
+          </h6>
+          
+          <form action="/recommend" method="POST" enctype="multipart/form-data">
+          <div class="custom-file overflow-hidden rounded-pill mb-5">
+            <input id="image" name="image" type="file" class="custom-file-input rounded-pill">
+            <label for="image" class="custom-file-label rounded-pill">Choose file</label>
           </div>
+          <!-- End -->
+          <button type="submit" class="file-upload btn btn-first btn-block rounded-pill shadow">Upload</button>
+          </form>
         </div>
-
-        <button type="submit" class="btn btn-primary">Upload</button>
-
-      </form>
-
+      </div>
     </div>
   </div>
-</div>
+</section>
 
 {% endblock %}
