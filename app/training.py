@@ -131,5 +131,5 @@ class Training():
 
 
 if __name__ == '__main__':
-    train = Training(dataset='my_dataset')
+    train = Training(dataset='prod_data')
     train.fit()

@@ -62,8 +62,8 @@ def run(PRODUCTS_LIST,NO_OF_PAGES,DEST_FOLDER, JSON_PATH):
 if __name__ == "__main__":
   # Configuration variables
   BASEPATH = os.path.abspath(os.getcwd())
-  NO_OF_PAGES = 1
-  PRODUCTS_LIST = ['mens%20jeans', 'mens%20shirts']
+  NO_OF_PAGES = 10
+  PRODUCTS_LIST = ['mens%20jeans', 'mens%20shirts','watch']
   DEST_FOLDER = os.path.join(BASEPATH, 'data', 'dataset', 'prod_data')
   WEBDRIVER_PATH = os.path.join(BASEPATH, 'chromedriver.exe')
   JSON_PATH = os.path.join(BASEPATH, 'data', 'dataset','json_data', 'ProductsData.json')

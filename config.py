@@ -9,7 +9,7 @@ class DevelopmentConfig(Config):
     IMAGE_UPLOAD_LOCATION = os.path.join(BASEPATH, 'data/input_image', 'input.jpg')
     MODEL_NAME = 'VGG'
     NO_OF_SIMILAR_IMAGES = 6
-    DATASET = 'my_dataset'
+    DATASET = 'prod_data'
     #DATASET_IMAGES_PATH = os.path.join(BASEPATH, 'data/dataset', DATASET)
     DATASET_IMAGES_PATH = os.path.join(BASEPATH, 'data','dataset',DATASET)
     MODEL_PATH = os.path.join(BASEPATH, 'data/models', 'model.h5')
