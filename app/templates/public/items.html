@@ -3,7 +3,38 @@
 {% block title %}Similar items{% endblock %}
 
 {% block main %}
-<div id="loader" class="text-center"></div>
+
+<div class="container" id="rcmd_container">
+
+  <div class="row justify-content-center">
+      <div class="col-md-3">
+          <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="{{url_for('send_image', filename=image)}}" class="d-block w-100" alt="...">
+              </div>
+            </div>
+      </div>
+    </div>
+      <div class="col-md-7">
+          <p class="newarrival text-center">SELECTED</p>
+          <h2>{{ image_name}}</h2>
+          <hr>
+          <p class="font-italic text-muted mb-0">Product Code : {{ image_name }}</p>
+          <ul class="list-inline small pt-3">
+              {% for i in range(image_rating) %}
+              <li class="list-inline-item m-0"><i class="fa fa-star text-success" style="color: #F53163 !important"></i></li>
+              {% endfor %}
+          </ul>
+          <p class="price"> USD $20.00</p>
+          <p><b>Availability : </b>In Stock</p>
+          <p><b>Condition : </b>New</p>
+          <p><b>Brand : </b>XYZ Company</p>
+            <button type="button" class="btn btn-default"></button>
+      </div>
+</div>
+
+<div class="results"></div>
 <div class="container py-5">
   <!-- For Demo Purpose-->
   <header class="text-center mb-5">
