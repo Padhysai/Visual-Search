@@ -16,7 +16,7 @@
 
   <title>{% block title %}{% endblock %}</title>
 </head>
-
+<div class="loader"></div>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-first" id="nav_hide">
     <a class="navbar-brand font-weight-bold font-italic" style="color:#F53163" href="/">Visual Search</a>
@@ -100,9 +100,8 @@
   </div>
   <!-- Footer Section end-->
   
-  <!-- Import jquery 3.3.1 slim min -->
+  <!-- Import jquery 3.3.1  min -->
   <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-  <!--<script src="{{ url_for('static', filename='js/jquery.slim.min.js') }}"></script>-->
   <!-- Import Bootstrap bundle -->
   <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ url_for('static',filename='js/script.js') }}"></script>
