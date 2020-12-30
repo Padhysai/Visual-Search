@@ -14,3 +14,4 @@ class DevelopmentConfig(Config):
     DATASET_IMAGES_PATH = os.path.join(BASEPATH, 'data','dataset',DATASET)
     MODEL_PATH = os.path.join(BASEPATH, 'data/models', 'model.h5')
     JSON_PATH = os.path.join(BASEPATH, 'data', 'dataset','json_data','ProductsData.json')
+    FAVICON_PATH = os.path.join(BASEPATH, 'app','static','images')
