@@ -13,7 +13,7 @@ import json
 def scraper(searchString, NO_OF_PAGES):
   Product_dict = {}
   for i in range(NO_OF_PAGES):
-    flipkart_url = "https://www.flipkart.com/search?q=" + searchString + "&page={}".format(i)
+    flipkart_url = "https://www.flipkart.com/search?q=" + searchString + "&page={}&sort=price_desc".format(i)
     uClient = uReq(flipkart_url)
     flipkartPage = uClient.read()
     uClient.close()

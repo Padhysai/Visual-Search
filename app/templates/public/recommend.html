@@ -3,7 +3,6 @@
 {% block title %}Similar items{% endblock %}
 
 {% block main %}
-<div id="loader" class="text-center"></div>
 <div class="container py-5">
   <!-- For Demo Purpose-->
   <header class="text-center mb-5">
@@ -21,10 +20,7 @@
       <div class="card rounded shadow-sm border-0">
         <div class="card-body p-4"><img
             src="{{url_for('send_image', filename=item['title'])}}" alt="{{ item['title'] }}"
-            class="img-fluid d-block mx-auto mb-3" id="custimg" onclick="route(this.alt)" style="object-fit: cover;
-            height: 15vw;
-            width: 100%;
-            cursor: grab;">
+            class="img-fluid d-block mx-auto mb-3" id="custimg" onclick="route(this.alt)">
           <h6> <a href="{{ item['URL'] }}" class="text-dark">{{ item['title'][:35]}}...</a></h6>
           <p class="small text-muted font-italic">{{ item['desc'][:55] }}...</p>
           <ul class="list-inline small">
