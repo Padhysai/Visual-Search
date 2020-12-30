@@ -16,6 +16,9 @@ def index():
     ProductsJSON.update(prod)
     return render_template('public/index.html')
 
+@app.route('/favicon.ico') 
+def favicon(): 
+    return send_from_directory(app.config["FAVICON_PATH"], 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route("/about")
 def about():
