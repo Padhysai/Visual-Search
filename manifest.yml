@@ -1,7 +1,7 @@
 
 ---
 applications:
-- name: VehicleNumberPlateDetection
+- name: Visual-Search-Engine
   memory: 2GB
   disk_quota: 2GB
   random-route: true
