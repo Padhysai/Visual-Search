@@ -12,10 +12,6 @@ ProductsJSON = {}
 @cross_origin()
 @app.route("/")
 def index():
-    # Loading JSON data
-    f = open(app.config["JSON_PATH"])
-    prod = json.load(f)
-    ProductsJSON.update(prod)
     return render_template('public/index.html')
 
 @cross_origin()
@@ -41,6 +37,9 @@ def send_image(filename):
 @cross_origin()
 @app.route("/recommend", methods=["GET", "POST"])
 def recommend():
+    global ProductsJSON
+    f = open(app.config["JSON_PATH"])
+    ProductsJSON = json.load(f)
     items = []
     if request.method == "POST":
 
@@ -74,6 +73,9 @@ def recommend():
 @cross_origin()
 @app.route("/items", methods=["GET", "POST"])
 def items():
+    global ProductsJSON
+    f = open(app.config["JSON_PATH"])
+    ProductsJSON = json.load(f)
     if request.method == "POST":
         #img = request.get_json()
         img = request.form['img']
