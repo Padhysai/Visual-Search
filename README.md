@@ -1,8 +1,15 @@
 # Visual-Search
 
-[![Generic badge](https://img.shields.io/badge/Python-3.6-blue.svg)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/Python-3.6-blue.svg)](https://www.python.org/)
+[![Generic badge](https://img.shields.io/badge/Framework-flask-green.svg)](https://flask.palletsprojects.com/en/1.1.x/)
+[![Generic badge](https://img.shields.io/badge/Frontend-BootStrap-%238a2be2.svg)](https://getbootstrap.com/)
+[![Generic badge](https://img.shields.io/badge/Database-Sqlite--3-yellowgreen.svg)](https://www.sqlite.org/index.html)
 
 I created a Visual Search engine using Flask(Python) to find the similar products we want. It uses convolutional neural networks to extract feature maps of images which are present in the Database and recommend the similar products to the user based on the user's input using Nearest neighbors algorithm. 
+
+## Watch Video Demo
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/0MVyXEYMbgc/0.jpg)](https://www.youtube.com/watch?v=0MVyXEYMbgc)
 
 ## How to run with your data?
 
