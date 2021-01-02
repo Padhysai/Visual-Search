@@ -9,7 +9,7 @@ I created a Visual Search engine using Flask(Python) to find the similar product
 
 ## Watch Video Demo
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/0MVyXEYMbgc/0.jpg)](https://www.youtube.com/watch?v=0MVyXEYMbgc)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/53hdAGl2Zu4/0.jpg)](https://www.youtube.com/watch?v=53hdAGl2Zu4)
 
 ## How to run with your data?
 
