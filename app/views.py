@@ -5,9 +5,11 @@ import json
 import os
 
 from flask import render_template,request,redirect,send_from_directory,make_response,jsonify
+from flask_cors import cross_origin
 from werkzeug.utils import secure_filename
 
 ProductsJSON = {}
+@cross_origin()
 @app.route("/")
 def index():
     # Loading JSON data
@@ -16,22 +18,27 @@ def index():
     ProductsJSON.update(prod)
     return render_template('public/index.html')
 
+@cross_origin()
 @app.route('/favicon.ico') 
 def favicon(): 
     return send_from_directory(app.config["FAVICON_PATH"], 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
+@cross_origin()
 @app.route("/about")
 def about():
     return render_template('public/about.html')
 
+@cross_origin()
 @app.route("/contact")
 def contact():
     return render_template('public/contact.html')
 
+@cross_origin()
 @app.route('/upload/<filename>')
 def send_image(filename):
     return send_from_directory(app.config["DATASET_IMAGES_PATH"], filename)
 
+@cross_origin()
 @app.route("/recommend", methods=["GET", "POST"])
 def recommend():
     items = []
@@ -64,6 +71,7 @@ def recommend():
 
     return render_template("public/recommend.html", items = res)
 
+@cross_origin()
 @app.route("/items", methods=["GET", "POST"])
 def items():
     if request.method == "POST":
