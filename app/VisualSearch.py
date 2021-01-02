@@ -48,7 +48,7 @@ class VisualSearch():
     # method to load features of each item
     def _load_features(self, model=app.config["MODEL_NAME"], remove_not_white=False):
         # connect to the database
-        conn = sqlite3.connect(parentdir + '\\data\\database\\features.db', detect_types=sqlite3.PARSE_DECLTYPES)
+        conn = sqlite3.connect(app.config["DB_PATH"], detect_types=sqlite3.PARSE_DECLTYPES)
         cur = conn.cursor()
 
         # extract the features
